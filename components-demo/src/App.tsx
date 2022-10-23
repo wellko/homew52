@@ -1,6 +1,8 @@
-import React from 'react';
 import './App.css';
+import cardDeck from "./lib/CardDeck";
+import React, {useState} from 'react';
 import Card from "./lib/Card";
+
 
 interface cardProps {
 	rank: string;
@@ -32,13 +34,33 @@ const CardView: React.FC<cardProps> = props => {
 }
 
 function App() {
-	return (
-		<div className="App">
-			<div className="playingCards faceImages">
-				<CardView rank="2" suit="clubs"/>
+	const [cards, setCards] = useState<Card[]>([]);
+	const getCards = () => {
+		 const CardsDeck = new cardDeck()
+		 setCards(CardsDeck.getCards(5));
+	}
+
+	if (cards.length > 0){
+		return (
+			<div className="App">
+				<div className="playingCards faceImages">
+					<CardView rank={cards[0].rank} suit={cards[0].suit}/>
+					<CardView rank={cards[1].rank} suit={cards[1].suit}/>
+					<CardView rank={cards[2].rank} suit={cards[2].suit}/>
+					<CardView rank={cards[3].rank} suit={cards[3].suit}/>
+					<CardView rank={cards[4].rank} suit={cards[4].suit}/>
+				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div className="App">
+				<button onClick={getCards}>Take cards</button>
+			</div>
+		);
+	}
+
+
 }
 
 export default App;

@@ -33,10 +33,10 @@ const CardView: React.FC<cardProps> = props => {
              </span>)
 }
 
-function App() {
+function App () {
 	const [cards, setCards] = useState<Card[]>([]);
-	const getCards = () => {
-		 const CardsDeck = new cardDeck()
+	const getCards = async () => {
+		 const CardsDeck = await new cardDeck()
 		 setCards(CardsDeck.getCards(5));
 	}
 

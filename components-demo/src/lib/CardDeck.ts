@@ -1,5 +1,5 @@
 import Card from "./Card";
-import card from "./Card";
+
 
 class CardDeck{
 	Desc: Card[]= [];
@@ -45,8 +45,10 @@ class CardDeck{
 		}
 	}
 	getCard():Card {
-		const random = Math.floor(Math.random() * this.Desc.length + 1)
+		const random = Math.floor(Math.random() * (this.Desc.length))
+		console.log(random)
 		 const deleted:Card[] = this.Desc.splice(random, 1);
+		console.log(this.Desc)
 		return deleted[0]
 	}
 	getCards(howMany: number) {

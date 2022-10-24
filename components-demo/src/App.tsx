@@ -2,6 +2,7 @@ import './App.css';
 import cardDeck from "./lib/CardDeck";
 import React, {useState} from 'react';
 import Card from "./lib/Card";
+import PokerHand from "./lib/PokerHand";
 
 
 interface cardProps {
@@ -35,10 +36,15 @@ const CardView: React.FC<cardProps> = props => {
 
 function App () {
 	const [cards, setCards] = useState<Card[]>([]);
-	const getCards = async () => {
-		 const CardsDeck = await new cardDeck()
-		 setCards(CardsDeck.getCards(5));
+	const [combination, setCombination] = useState<string>('')
+	const getCards = () => {
+		 const CardsDeck = new cardDeck()
+		const result = CardsDeck.getCards(5);
+		setCards(result);
+		const Hand = new PokerHand(result)
+		setCombination(Hand.getOutcome() || '');
 	}
+
 
 	if (cards.length > 0){
 		return (
@@ -49,6 +55,10 @@ function App () {
 					<CardView rank={cards[2].rank} suit={cards[2].suit}/>
 					<CardView rank={cards[3].rank} suit={cards[3].suit}/>
 					<CardView rank={cards[4].rank} suit={cards[4].suit}/>
+				</div>
+
+				<div className="combination">
+					<span>{combination}</span>
 				</div>
 			</div>
 		);

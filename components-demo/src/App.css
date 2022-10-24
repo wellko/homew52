@@ -1,5 +1,10 @@
+body{
+  background: #008282;
+}
+
 .App {
   text-align: center;
+  margin-top: 200px;
 }
 
 .App-logo {
@@ -35,4 +40,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button{
+  font-size: 30px;
+  padding: 30px 10px;
+  background-color: #C3C3C3;
+  box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E;
+}
+
+.combination{
+  margin: 25px auto 0;
+  font-size: 30px;
+  background-color: #C3C3C3;
+  box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E;
+  width: 40%;
+
 }

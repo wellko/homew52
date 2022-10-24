@@ -49,7 +49,7 @@ class PokerHand {
 			rankArray.push(this.value[i].getScore() || 0);
 			rankArray.sort(rightSort);
 		}
-		if ((rankArray[0] === rankArray[4] + 4) && (spades.length > 4 || clubs.length > 4 || hearts.length > 4 || diams.length > 4)) {
+		if ((rankArray[0] === rankArray[4] - 4) && (spades.length > 4 || clubs.length > 4 || hearts.length > 4 || diams.length > 4)) {
 			if (rankArray[0] === 10) {
 				return 'Royal flush';
 			} else {

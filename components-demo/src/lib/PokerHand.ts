@@ -18,7 +18,6 @@ class PokerHand {
 	}
 
 
-
 	getOutcome() {
 		let pair = 0;
 		let three = 0;
@@ -44,14 +43,14 @@ class PokerHand {
 		const clubs = this.handSuit.match(/c/g) || [];
 		const hearts = this.handSuit.match(/h/g) || [];
 		const diams = this.handSuit.match(/d/g) || [];
-		let rankArray:number[] = [];
+		let rankArray: number[] = [];
 
 		for (let i = 0; i < 5; i++) {
 			rankArray.push(this.value[i].getScore() || 0);
 			rankArray.sort(rightSort);
 		}
 		if ((rankArray[0] === rankArray[4] + 4) && (spades.length > 4 || clubs.length > 4 || hearts.length > 4 || diams.length > 4)) {
-			if (rankArray[0] === 10 ) {
+			if (rankArray[0] === 10) {
 				return 'Royal flush';
 			} else {
 				return 'straight flush';
@@ -62,15 +61,18 @@ class PokerHand {
 			return 'full-house'
 		} else if (spades.length > 4 || clubs.length > 4 || hearts.length > 4 || diams.length > 4) {
 			return 'flush';
-		}else if ((rankArray[0] === rankArray[3] + 3 && rankArray[4] === 14) || (rankArray[0] === rankArray[4] + 4)){
-			return 'straight';
-		}else if (three > 0) {
+		} else if (pair === 0) {
+			if (((rankArray[0] === rankArray[3] - 3) && (rankArray[4] === 14 && rankArray[0] === 2)) || (rankArray[0] === rankArray[4] - 4)) {
+				return 'straight';
+			}
+		} else if (three > 0) {
 			return 'three of a kind';
 		} else if (pair === 2) {
 			return 'two pairs';
 		} else if (pair === 1) {
 			return 'pair';
 		}
-}}
+	}
+}
 
 export default PokerHand;

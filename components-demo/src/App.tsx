@@ -38,17 +38,19 @@ function App () {
 	const [cards, setCards] = useState<Card[]>([]);
 	const [combination, setCombination] = useState<string>('')
 	const getCards = () => {
+		setCards([]);
 		 const CardsDeck = new cardDeck()
 		const result = CardsDeck.getCards(5);
 		setCards(result);
 		const Hand = new PokerHand(result)
 		setCombination(Hand.getOutcome() || '');
-	}
 
+	}
 
 	if (cards.length > 0){
 		return (
 			<div className="App">
+				<button onClick={getCards}>Take new cards</button>
 				<div className="playingCards faceImages">
 					<CardView rank={cards[0].rank} suit={cards[0].suit}/>
 					<CardView rank={cards[1].rank} suit={cards[1].suit}/>
@@ -65,7 +67,7 @@ function App () {
 	} else {
 		return (
 			<div className="App">
-				<button onClick={getCards}>Take cards</button>
+				<button onClick={getCards}>Get cards</button>
 			</div>
 		);
 	}
